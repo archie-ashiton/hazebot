@@ -82,6 +82,35 @@ bot.on('message', message =>{
         }
     }
 
+    if(command === 'rps'){
+        if(!args.length) return message.channel.send('the choices are `rock` `paper` and `scissors`');
+        let number = Math.floor(Math.random() * 3) + 1;
+        if(number === 1){
+            if(args[0] === 'rock'){
+                message.channel.send('It\s a tie!');
+            }else if(args[0] === 'paper'){
+                message.channel.send('You win!');
+            }else if(args[0] === 'scissors'){
+                message.channel.send('I win!');
+            }
+        }else if(number === 2){
+            if(args[0] === 'rock'){
+                message.channel.send('I win!');
+            }else if(args[0] === 'paper'){
+                message.channel.send('It\'s a tie!');
+            }else if(args[0] === 'scissors'){
+                message.channel.send('You win!');
+            }
+        }else if(number === 3){
+            if(args[0] === 'rock'){
+                message.channel.send('You lose!');
+            }else if(args[0] === 'paper'){
+                message.channel.send('You win!');
+            }else if(args[0] === 'scissors'){
+                message.channel.send('It\'s a tie!');
+            }
+        }
+
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
     const channel = oldmember.guild.channels.cache.find(channel => channel.name === 'gen-pm');
