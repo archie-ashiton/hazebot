@@ -101,7 +101,7 @@ bot.on('message', message =>{
 
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
 	const guild = bot.guilds.cache.get('771756185136529459');
-	const channel = guild.channels.cache.find(channel => channel.name === 'gen-pm');
+	const channel = oldmember.guild.channels.cache.find(channel => channel.name === 'gen-pm');
 	const pmEmbed = {
 		color: 0xBCB7AB,
 		title: `new pm - ${newmember.user.username} :paperclips:`,
