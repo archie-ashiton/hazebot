@@ -109,8 +109,9 @@ bot.on('message', message =>{
             }else if(args[0] === 'scissors'){
                 message.channel.send('It\'s a tie!');
             }
-        }
-
+		}
+	}
+});
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
     const channel = oldmember.guild.channels.cache.find(channel => channel.name === 'gen-pm');
