@@ -119,3 +119,5 @@ bot.on('guildMemberUpdate', (oldmember, newmember) =>{
 });
 
 bot.login(process.env.token);
+
+abcdefghijklmnop
