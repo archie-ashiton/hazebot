@@ -84,11 +84,11 @@ bot.on('message', message =>{
 
     if(command === 'rps'){
         let number = Math.floor(Math.random() * 3) + 1;
-        if(roll === 1){
+        if(number === 1){
             message.channel.send('rock');
-        }else if(roll === 2){
+        }else if(number === 2){
             message.channel.send('paper');
-        }else if(roll === 3){
+        }else if(number === 3){
             message.channel.send('scissors');
         }
     }
