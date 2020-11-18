@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const prefix = ',';
+const guild = bot.guilds.cache.get('771756185136529459');
 
 bot.on('ready', () =>{
     console.log('haze is ready');
