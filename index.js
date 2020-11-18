@@ -84,20 +84,15 @@ bot.on('message', message =>{
 		message.channel.send({ embed: helpEmbed });
 	};
 
-    if(command === 'role'){
-		if(message.member.roles.cache.some(role => role.name === 'own' || 'admin' || 'bot dev')){
-			const role = message.guild.roles.cache.find(role => role.name === `${args[0]}`);
-			const member = message.mentions.members.first();
-			if(!args[0] || !args[1]){
-				message.channel.send('correct usage: `,role <role> <user>`');
-			}else{
-				member.roles.add(role);
-			}
+	if(command === 'role'){
+		const role = message.guild.roles.cache.find(role => role.name === `${args[0]}`);
+		const member = message.mentions.members.first();
+		if(!message.member.roles.cache.some(role => role.name === 'own')) return message.channel.send('that\'s an admin command');
+		if(!args.length){
+			message.channel.send('correct usage: `,role <role> <user>`');
 		}else{
-			message.channel.send('that\'s an admin command');
-		}
-    };
-});
+			member.roles.add(role);
+	}
 
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
 	const guild = bot.guilds.cache.get('771756185136529459');
@@ -118,4 +113,4 @@ bot.on('guildMemberUpdate', (oldmember, newmember) =>{
 	}else return;
 });
 
-bot.login(process.env.token);
+bot.login(procces.env.token);
