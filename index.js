@@ -3,8 +3,13 @@ const bot = new Discord.Client();
 const prefix = ',';
 const guild = bot.guilds.cache.get('771756185136529459');
 
-bot.on('ready', () =>{
+function game1(){
+	bot.user.setActivity(`${prefix}help`);
+};
+
+bot.once('ready', () =>{
     console.log('haze is ready');
+    game1();
 });
 
 bot.on('guildMemberAdd', member =>{
