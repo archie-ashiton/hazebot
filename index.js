@@ -34,6 +34,7 @@ bot.on('guildMemberRemove', member =>{
     
     channel.send(`**${member.displayName}** has left the server, bye whore <:w_butterfly1_h:772836377871777864>`);
 });
+
 bot.on('message', message =>{
     var channelName = message.channel.name;
     if (message.channel.type === 'dm'){
@@ -78,6 +79,17 @@ bot.on('message', message =>{
             message.channel.send('correct usage: `,role <role> <user>`');
         }else{
             member.roles.add(role);
+        }
+    }
+
+    if(command === 'rps'){
+        let number = Math.floor(Math.random() * 3) + 1;
+        if(roll === 1){
+            message.channel.send('rock');
+        }else if(roll === 2){
+            message.channel.send('paper');
+        }else if(roll === 3){
+            message.channel.send('scissors');
         }
     }
 });
