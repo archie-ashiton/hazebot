@@ -86,7 +86,7 @@ bot.on('message', message =>{
 
     if(command === 'role'){
 		if(message.member.roles.cache.some(role => role.name === 'own' || 'admin' || 'bot dev')){
-			const role = guild.roles.cache.find(role => role.name === `${args[0]}`);
+			const role = message.guild.roles.cache.find(role => role.name === `${args[0]}`);
 			const member = message.mentions.members.first();
 			if(!args[0] || !args[1]){
 				message.channel.send('correct usage: `,role <role> <user>`');
