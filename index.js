@@ -82,18 +82,6 @@ bot.on('message', message =>{
         }
     }
 
-    if(command === 'rps'){
-        let number = Math.floor(Math.random() * 3) + 1;
-        if(number === 1){
-            message.channel.send('rock');
-        }else if(number === 2){
-            message.channel.send('paper');
-        }else if(number === 3){
-            message.channel.send('scissors');
-        }
-    }
-});
-
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
     const channel = oldmember.guild.channels.cache.find(channel => channel.name === 'gen-pm');
