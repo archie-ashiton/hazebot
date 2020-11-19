@@ -78,8 +78,8 @@ bot.on('message', message =>{
             },
             timestamp: new Date()
         }
-        message.channel.send({ embed: mmStartEmbed })
-            .then(sentMessage => sentMessage.react('<a:w_butterfly4:773274336835534869>'))
+        return message.channel.send({ embed: mmStartEmbed })
+            .then(sentMessage => sentMessage.react('<a:w_butterfly4:773274336835534869>'));
     }
 	if(!bot.commands.has(command)){
 		message.channel.send('use a real command');
