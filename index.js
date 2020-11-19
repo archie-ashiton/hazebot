@@ -68,19 +68,6 @@ bot.on('message', message =>{
         return bot.emit('guildMemberAdd', message.member);
     }
     
-    if(command === 'mm'){
-        const mmStartEmbed = {
-            title: 'murder mystery',
-            color: 0xBCB7AB,
-            description: '**about**\neach person is given a role: `murderer`, `doctor`, `sheriff`, or `innocent`.\nthe murderer\'s job is to kill everyone without getting caught\nthe doctor\'s job is to heal someone of their choice before the murderer gets a chance to kill them.\nthe sheriff\'s job is to use evidence provided by the innocents to catch the murderer\nthe innocent\'s job is to provide evidence, however, they have no power.\n\n**rules**\nall server rules apply.\nkeep your dms open so the bot can dm you your role\nif you know who the murderer is, do not betray your team.\n\n**setup**\nto start the game, everyone that wants to play reacts to this message.\nif you are the murderer, you will recieve a list of people to kill each night\nif you are the doctor, you will recieve a list of people to heal each night\nonce the day begins, the citizens will present evidence and voting will start.\nany message sent by a dead innocent will be deleted',
-            footer: {
-                text: 'thanks for playing!'
-            },
-            timestamp: new Date()
-        }
-        return message.channel.send({ embed: mmStartEmbed })
-            .then(sentMessage => sentMessage.react('<a:w_butterfly4:773274336835534869>'));
-    }
 	if(!bot.commands.has(command)){
 		message.channel.send('use a real command');
     }
