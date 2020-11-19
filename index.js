@@ -2,6 +2,15 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const prefix = ',';
 const guild = bot.guilds.cache.get('771756185136529459');
+const fs = require('fs');
+
+bot.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  bot.commands.set(command.name, command);
+};
 
 function game1(){
     bot.user.setActivity(`${prefix}help`);
@@ -36,24 +45,35 @@ bot.on('guildMemberRemove', member =>{
 });
 
 bot.on('message', message =>{
-    var channelName = message.channel.name;
-    if (message.channel.type === 'dm'){
-        var channelName = 'DM';
-    };
-    console.log(`${message.author.username} in #${channelName}: ` + message.content);
-    if(message.content.startsWith('<@!773593301563342849>')){
-        const prefixEmbed = {
-            color: 0xBCB7AB,
-            description: ':paperclips:  |  my prefix is: `,`!'
-        };
-        message.channel.send({ embed: prefixEmbed });
-    };
-    if(message.author.bot ||!message.guild ||!message.content.startsWith(prefix)) return;
-
     const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    const guild = bot.guilds.cache.get('771756185136529459');
+	const command = args.shift().toLowerCase();
 
+	var channelName = message.channel.name;
+	if (message.channel.type === 'dm') {
+		var channelName = 'DM';
+	}
+	console.log(`${message.author.username} in #${channelName}: ` + message.content);
+	if(message.content.startsWith('hi')){
+		message.react('762872711557939220');
+	};
+	if(message.content.startsWith('ash') || message.content.startsWith('Ash')){
+		message.react('762494006311518259');
+	};
+
+	if(message.author.bot || !message.content.startsWith(prefix))return;
+
+	message.delete();
+	
+	if(!bot.commands.has(command)){
+		message.channel.send('use a real command');
+	}
+
+	try{
+		bot.commands.get(command).execute(message, args);
+	}catch(error){
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
 });
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
