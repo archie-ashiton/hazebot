@@ -62,11 +62,15 @@ bot.on('message', message =>{
 
 	if(message.author.bot || !message.content.startsWith(prefix))return;
 
-	message.delete();
+    message.delete();
+    
+    if(command === 'welcome'){
+        return bot.emit('guildMemberAdd', message.member);
+    }
 	
 	if(!bot.commands.has(command)){
 		message.channel.send('use a real command');
-	}
+    }
 
 	try{
 		bot.commands.get(command).execute(message, args);
@@ -75,6 +79,7 @@ bot.on('message', message =>{
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
     const channel = oldmember.guild.channels.cache.find(channel => channel.name === 'gen-pm');
