@@ -54,63 +54,6 @@ bot.on('message', message =>{
     const command = args.shift().toLowerCase();
     const guild = bot.guilds.cache.get('771756185136529459');
 
-    if(command === 'welcome'){
-        bot.emit('guildMemberAdd', message.member);
-    };
-
-    if(command === 'help'){
-        const helpEmbed = {
-            color: 0xBCB7AB,
-            title: 'haze',
-            description: '<> - optional arguments\n[] - mandatory arguments\n\n**General Commands**\n`,help` - displays this menu\n\n**Fun Commands**\n\n**Staff Commands**\n`,role [role] [user]`',
-            footer: {
-                text: 'xoxo',
-            },
-            timestamp: new Date(),
-        };
-        message.channel.send({ embed: helpEmbed });
-    };
-
-    if(command === 'role'){
-        const role = message.guild.roles.cache.find(role => role.name === `${args[0]}`);
-        const member = message.mentions.members.first();
-        if(!message.member.roles.cache.some(role => role.name === 'own')) return message.channel.send('that\'s an admin command');
-        if(!args.length){
-            message.channel.send('correct usage: `,role <role> <user>`');
-        }else{
-            member.roles.add(role);
-        }
-    }
-
-    if(command === 'rps'){
-        if(!args.length) return message.channel.send('the choices are `rock` `paper` and `scissors`');
-        let number = Math.floor(Math.random() * 3) + 1;
-        if(number === 1){
-            if(args[0] === 'rock'){
-                message.channel.send('I pick rock, it\s a tie!');
-            }else if(args[0] === 'paper'){
-                message.channel.send('I pick rock, you win!');
-            }else if(args[0] === 'scissors'){
-                message.channel.send('I pick rock, I win!');
-            }
-        }else if(number === 2){
-            if(args[0] === 'rock'){
-                message.channel.send('I pick paper, I win!');
-            }else if(args[0] === 'paper'){
-                message.channel.send('I pick paper, it\'s a tie!');
-            }else if(args[0] === 'scissors'){
-                message.channel.send('I pick paper, you win!');
-            }
-        }else if(number === 3){
-            if(args[0] === 'rock'){
-                message.channel.send('I pick scissors, you win!');
-            }else if(args[0] === 'paper'){
-                message.channel.send('I pick scissors, I win!');
-            }else if(args[0] === 'scissors'){
-                message.channel.send('I pick scissors, it\'s a tie!');
-            }
-		}
-	}
 });
 bot.on('guildMemberUpdate', (oldmember, newmember) =>{
     const guild = bot.guilds.cache.get('771756185136529459');
